@@ -1,5 +1,6 @@
 import './App.css';
 import Header from '../Components/Header';
+import Player from '../Components/Player';
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
   return (
     <div className="App">
       <Header title={appData.title} link={appData.link} />
+      <Player /> 
     </div>
   );
 }
