@@ -1,0 +1,21 @@
+div {
+    &.timeline {
+        width: 300px;
+        background-color: #727272;
+        height: 5px;
+        justify-content: flex-start!important;
+        border-radius: 5px;
+        div {
+            &.progress {
+                width: 40%;
+                height: 5px;
+                border-radius: 5px;
+                background-color: #f4f4f4;
+                cursor: pointer;
+                &:hover {
+                    background-color: #1db954;
+                }
+            }
+        }
+    }
+}
