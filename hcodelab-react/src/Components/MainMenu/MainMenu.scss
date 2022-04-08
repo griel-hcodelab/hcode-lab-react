@@ -1,0 +1,94 @@
+div {
+    &.mainMenu {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: calc(100vh - 100px);
+        background-color: #111;
+        position: relative;
+
+        a {
+            color: #e4e4e4;
+            text-decoration: none;
+            font-size: 0.8em;
+
+            &:hover {
+                color: #FFF;
+            }
+        }
+
+        ul {
+            list-style-type: none;
+
+            li {
+                line-height: 2em;
+                display: flex;
+                justify-content: flex-start;
+            }
+        }
+
+        div {
+            &.icons {
+                display: flex;
+                flex-direction: column;
+                ul {
+                    li {
+                        a {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            svg {
+                                margin-right: 10px;
+                                fill: #dbdbdb;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.playlist {
+                height: 40vh;
+                overflow-y: scroll;
+                position: absolute;
+                bottom: 30px;
+                width: 100%;
+            }
+        }
+
+        >button {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            line-height: 30px;
+            border: none;
+            background: #1db954;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgb(107, 107, 107);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgb(199, 199, 199);
+        }
+
+        svg {
+            &.spotify-logo--text {
+                width: 130px;
+                margin: 10% 5%;
+                align-self: flex-start;
+                path {
+                    fill: #f4f4f4;
+                }
+            }
+        }
+    }
+}

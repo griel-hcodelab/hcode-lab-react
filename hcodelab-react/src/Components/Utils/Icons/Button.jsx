@@ -10,6 +10,12 @@ import {Microphone} from './Microphone';
 import {Queue} from './Queue';
 import {Devices} from './Devices';
 import {Volume} from './Volume';
+import {Home} from './Home';
+import {Library} from './Library';
+import {New} from './New';
+import {Search} from './Search';
+import { Favorites } from './Favorites';
+import { Logo } from './Logo';
 
 const Button = (props) => {
 
@@ -35,6 +41,18 @@ const Button = (props) => {
             return <Devices />;
         case 'volume':
             return <Volume />;
+        case 'favorites':
+            return <Favorites />;
+        case 'home':
+            return <Home />;
+        case 'library':
+            return <Library />;
+        case 'new':
+            return <New />;
+        case 'search':
+            return <Search />;
+        case 'logo':
+            return <Logo />;
         default:
             return null;
     }
