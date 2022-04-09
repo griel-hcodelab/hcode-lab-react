@@ -10,6 +10,7 @@ section {
                 display: grid;
                 grid-auto-rows: 220px;
                 grid-template-columns: repeat(2, 1fr);
+                cursor: pointer;
                 div {
                     &.model-item {
                         h3 {

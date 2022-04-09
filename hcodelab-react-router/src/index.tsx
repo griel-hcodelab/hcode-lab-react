@@ -8,6 +8,7 @@ import Models from './routes/models';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Discover } from './routes/discover';
+import { Model } from './routes/model';
 
 const container = document.querySelector("div#root") as HTMLElement;
 
@@ -24,6 +25,8 @@ root.render(
       <Route path="/" element={<App />} />
       
       <Route path="/models" element={<Models />} />
+
+      <Route path="/models/:id" element={<Model  />} />
       
       <Route path="/discover" element={<Discover />} />
 
