@@ -1,0 +1,62 @@
+section {
+    margin: 25px 0;
+    h2 {
+        padding: 0 7%;
+        margin-bottom: 25px;
+    }
+    &#models {
+        div {
+            &.models {
+                display: grid;
+                grid-auto-rows: 220px;
+                grid-template-columns: repeat(2, 1fr);
+                div {
+                    &.model-item {
+                        h3 {
+                            color: #FFF;
+                            font-size: 2em;
+                            margin-left: 10%;
+                            margin-top: 10%;
+                        }
+                        &:nth-child(1) {
+                            background-image: url('../../assets/images/porsche-small.webp');
+                        }
+                        &:nth-child(2) {
+                            background-image: url('../../assets/images/porsche-small-2.webp');
+                        }
+                        &:nth-child(3) {
+                            background-image: url('../../assets/images/porsche-small-3.webp');
+                        }
+                        &:nth-child(4) {
+                            background-image: url('../../assets/images/porsche-small-4.webp');
+                        }
+                        &:nth-child(5) {
+                            background-image: url('../../assets/images/porsche-small-5.webp');
+                        }
+                        &:nth-child(6) {
+                            background-image: url('../../assets/images/porsche-small-6.webp');
+                        }
+                        
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: 50%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 960px) {
+    section {
+        &#models {
+            div {
+                &.models {
+                    grid-auto-rows: 500px;
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+        }
+    }
+}
+    
