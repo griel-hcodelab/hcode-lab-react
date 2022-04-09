@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Models from './routes/models';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
+import { Discover } from './routes/discover';
 
 const container = document.querySelector("div#root") as HTMLElement;
 
@@ -23,6 +24,8 @@ root.render(
       <Route path="/" element={<App />} />
       
       <Route path="/models" element={<Models />} />
+      
+      <Route path="/discover" element={<Discover />} />
 
     </Routes>
 
