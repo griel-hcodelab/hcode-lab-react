@@ -7,9 +7,9 @@ import './header.scss';
 export const Header = () => {
     return (
         <header className="app-header">
-            <a href="/" className="logo" aria-label='Logo'>
+            <Link to="/" className="logo" aria-label='Logo'>
                 <img src={Logo} alt="Porsche" />
-            </a>
+            </Link>
 
             <div className="menu">
                 <ul>
