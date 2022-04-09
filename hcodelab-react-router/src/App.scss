@@ -1,0 +1,110 @@
+.app {
+	header {
+		height: 60px;
+		margin: 0 7vw;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		a {
+			&.logo {
+				padding: 10px 5px;
+				border: 1px solid #e3e5e5;
+				background-color: #FFF;
+				img {
+					height: 60px;
+				}
+			}
+		}
+	
+		div {
+			&.menu {
+				ul {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					li {
+						list-style: none;
+						font-size: 16px;
+						a {
+							text-decoration: none;
+							color: #333;
+						}
+						& + li {
+							margin-left: 20px;
+						}
+					}
+				}
+			}
+	
+		}
+	}
+	section {
+		&#hero {
+			height: 500px;
+			padding: 50px 40px;
+			color: #333;
+			background-image: url('assets/images/porsche-normal.webp');
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: 50%;
+			cursor: pointer;
+			div {
+				&.container {
+					color: #333;
+					transition: all ease 1s;
+					h2, h3 {
+						margin: 0;
+					}
+					h2 {
+						font-weight: 600;
+						line-height: 38px;
+						font-size: 2em;
+						&::before {
+							width: 1em;
+							color: #d5001c;
+							font-size: 28px;
+							content: ">";
+							margin-left: -18px;
+						}
+					}
+					h3 {
+						font-weight: 600;
+						line-height: 1.5em;
+						font-size: 1.5em;
+					}
+					&:hover {
+						color: red;
+					}
+				}
+			}
+		}
+	}
+	footer {
+		background-color: #191f22;
+		color: #FFF;
+		padding: 4.5em 7%;
+		margin-top: 50px;
+		.copyright {
+			margin-bottom: 0;
+			line-height: 1.5em;
+		}
+	}
+}
+
+@media screen and (min-width: 1200px) {
+	.app {
+		section {
+			&#hero {
+				div {
+					&.container {
+						h2, h3 {
+							max-width: 1200px;
+							width: 100%;
+							margin: 0 auto;
+						}
+					}
+				}
+			}
+		}
+	}
+}
