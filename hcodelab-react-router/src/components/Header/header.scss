@@ -1,0 +1,44 @@
+header {
+    &.app-header {
+
+        height: 60px;
+    margin: 0 7vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    a {
+        &.logo {
+            padding: 10px 5px;
+            border: 1px solid #e3e5e5;
+            background-color: #FFF;
+            img {
+                height: 60px;
+            }
+        }
+    }
+
+    div {
+        &.menu {
+            ul {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                li {
+                    list-style: none;
+                    font-size: 16px;
+                    a {
+                        text-decoration: none;
+                        color: #333;
+                    }
+                    & + li {
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
+
+    }
+
+    }
+    
+}

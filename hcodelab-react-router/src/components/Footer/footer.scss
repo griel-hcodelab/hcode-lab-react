@@ -1,0 +1,12 @@
+footer {
+    &.app-footer {
+        background-color: #191f22;
+        color: #FFF;
+        padding: 4.5em 7%;
+        margin-top: 50px;
+        .copyright {
+            margin-bottom: 0;
+            line-height: 1.5em;
+        }
+    }
+}
