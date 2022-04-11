@@ -12,13 +12,36 @@ export default class MainMenu extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {language: 'pt-br'};
+        this.state = {language: 'pt-br', welcome: 'Bem vindo ao Spotify'};
         //Sempre que quero armazenar um valor no estado, uso o this.state({})
 
         this.handleNewPlaylist = this.handleNewPlaylist.bind(this);
         //Sempre que quero usar o this dentro de uma função, uso o bind(this)
 
+        this.handleUpdateTitle = this.handleUpdateTitle.bind(this);
+
     }
+
+    componentDidMount() {
+
+        document.title = `Spotify - ${this.state.welcome}`
+
+    }
+
+    componentDidUpdate() {
+
+        document.title = `Alterou Spotify - ${this.state.welcome}`
+
+    }
+
+    componentWillUnmount() {
+
+        alert(`Desmontou Spotify - ${this.state.welcome}`)
+
+    }
+
+
+    
 
 
     render() {
@@ -61,7 +84,7 @@ export default class MainMenu extends React.Component {
                         ))}
                     </ul>
                 </div>
-                <button onClick={this.handleNewPlaylist}>Spotify Premium</button>
+                <button onClick={this.handleUpdateTitle}>Spotify Premium</button>
             </div>
         )
     }
@@ -69,6 +92,14 @@ export default class MainMenu extends React.Component {
     handleNewPlaylist(e) {
 
         alert('Adicionar nova playlist');
+
+    }
+
+    handleUpdateTitle(e) {
+
+        console.log('Alterou o título');
+
+        this.setState({welcome: 'Spotify.com - Novo Título'});
 
     }
 
