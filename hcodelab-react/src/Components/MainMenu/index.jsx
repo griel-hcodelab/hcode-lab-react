@@ -46,7 +46,7 @@ export default class MainMenu extends React.Component {
 
     render() {
 
-        this.setState({language: 'en'});
+        //this.setState({language: 'en'});
         //Sempre que quero alterar o valor do estado, uso o this.setState({})
 
         return (

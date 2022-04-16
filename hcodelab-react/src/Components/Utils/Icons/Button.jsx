@@ -28,7 +28,7 @@ const Button = (props) => {
         case 'forward':
             return <Forward />;
         case 'play':
-            return <Play />;
+            return <Play onClick={props.event}/>;
         case 'random':
             return <Random />;
         case 'repeat':
