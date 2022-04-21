@@ -1,5 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '2mb'
+        }
+    }
+}
+
+
+
 export default function handlerUser(req: NextApiRequest, res: NextApiResponse){
 
     switch(req.method){
