@@ -1,11 +1,15 @@
 import Link from "next/link";
 
+import style from './Menu.module.css';
+
+
+
 const Menu = () => {
     return (
         <>
             <nav className="column side" style={{ backgroundColor: '#aaa' }}>
                 <ul>
-                    <li>
+                    <li className={style.li}>
                         <Link href="/">
                             <a>HOME</a>
                         </Link>
