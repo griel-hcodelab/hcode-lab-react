@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { Fragment, useEffect } from 'react'
-
+import {Button} from '../components/Button'
 
 const Home: NextPage = () => {
 
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         <h1>Home</h1>
         </div>
         <aside className="column side" style={{ backgroundColor: '#ccc' }}>
-        aside
+        <Button color="primary" type="button">Clique Aui</Button>
         </aside>
 
 

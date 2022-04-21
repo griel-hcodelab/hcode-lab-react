@@ -3,6 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   env: {
     MYSQL_CONNECT: process.env.MYSQL_CONNECT,
+  },
+  compiler: {
+    styledComponents: true
   }
 }
 
