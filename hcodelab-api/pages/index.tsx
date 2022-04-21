@@ -1,8 +1,13 @@
 import type { NextPage } from 'next'
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 
 
 const Home: NextPage = () => {
+
+  useEffect(()=>{
+    console.log(process.env.MYSQL_CONNECT);
+  },[]);
+
   return (
     <Fragment>
 
@@ -21,3 +26,14 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+
+export function getServerSideProps() {
+  console.log(process.env.MYSQL_CONNECT);
+
+  return {
+    props: {
+
+    }
+  }
+}
