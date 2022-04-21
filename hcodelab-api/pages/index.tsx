@@ -1,17 +1,22 @@
 import type { NextPage } from 'next'
-import Link from 'next/link'
+import { Fragment } from 'react'
 
 
 const Home: NextPage = () => {
   return (
-    <>
-      <h1>Hello World!</h1>
-      <hr />
+    <Fragment>
 
-      <Link href="/blog/criando-um-curso">
-        <a >Link para Post</a>
-      </Link>
-    </>
+
+        <div className="column middle" style={{ backgroundColor: '#bbb' }}>
+        <h1>Home</h1>
+        </div>
+        <aside className="column side" style={{ backgroundColor: '#ccc' }}>
+        aside
+        </aside>
+
+
+
+    </Fragment>
   )
 }
 
