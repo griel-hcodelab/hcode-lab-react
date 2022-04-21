@@ -1,11 +1,17 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Link from 'next/link'
+
 
 const Home: NextPage = () => {
   return (
-    <h1>Hello World!</h1>
+    <>
+      <h1>Hello World!</h1>
+      <hr />
+
+      <Link href="/blog/criando-um-curso">
+        <a >Link para Post</a>
+      </Link>
+    </>
   )
 }
 
