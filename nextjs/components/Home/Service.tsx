@@ -1,3 +1,4 @@
+import Link from "next/link"
 
 export const Service = () => {
   return (
@@ -22,7 +23,9 @@ export const Service = () => {
             </figure>
           </div>
 
-          <a href="schedules-new.html" className="btn">Agendar Serviço</a>
+          <Link href="/schedules-new">
+            <a className="btn">Agendar Serviço
+            </a></Link>
         </div>
 
         <img src="/images/services.svg" alt="Serviços" />

@@ -1,4 +1,5 @@
-import Link from "next/link"
+import Link from "next/link";
+import { toBack } from "../../utils/toBack";
 
 type FooterButton = {
     href?: string;
@@ -7,32 +8,56 @@ type FooterButton = {
     disabled?: boolean;
     className?: string;
     onClick?: () => void;
-
 }
 
 type FooterProps = {
     buttons?: FooterButton[];
-}
+};
 
-export const Footer = ({ buttons }: FooterProps) => {
+
+
+const Footer = ({
+    buttons = [
+        {
+            value: "Continuar",
+            type: "submit",
+            href: "/schedules-time-options"
+        },
+        {
+            value: "Voltar",
+            onClick: toBack,
+            type: "submit"
+        }
+    ],
+}: FooterProps) => {
+
     return (
         <footer className="fixed">
-            {buttons?.map(({ href, type, className, disabled, onClick, value }, index) => {
+            {buttons?.map(({ href, type, className, disabled, value, onClick }, index) => {
 
                 if (href === undefined) {
-                    <button key={index} type={type} className={className} disabled={disabled} onClick={onClick}>{value}</button>
+                    return (
+                        <button
+                            key={index}
+                            type={type}
+                            className={className}
+                            disabled={disabled}
+                            onClick={onClick}
+                        >{value}</button>
+                    )
                 } else {
                     return (
-                        <Link key={index} href={href}>
+                        <Link href={href} key={index}>
                             <a className={className}>{value}</a>
                         </Link>
                     )
                 }
 
-
             })}
-
-
+            
         </footer>
     )
+
 }
+
+export default Footer;
