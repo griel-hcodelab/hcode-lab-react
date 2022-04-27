@@ -1,5 +1,7 @@
+import axios from "axios"
 import { format } from "date-fns"
 import { NextPage } from "next"
+import { useRouter } from "next/router"
 import { Fragment, useCallback, useState } from "react"
 import { Calendar } from "../components/Calendar"
 import { Header } from "../components/Header"
@@ -7,7 +9,9 @@ import { Page } from "../components/Page"
 import Footer from "../components/Page/Footer"
 
 
-const SchedulesNew: NextPage = ()=>{
+const ComponentPage: NextPage = ()=>{
+
+    const router = useRouter();
 
     const [scheduleAt, setScheduleAt] = useState<Date | null>(null);
 
@@ -15,7 +19,21 @@ const SchedulesNew: NextPage = ()=>{
 
         event.preventDefault();
 
-        console.log(scheduleAt)
+        if (!scheduleAt) {
+            console.error('scheduleAt is not defined');
+            return false;
+        }
+
+        axios.post('/api/schedules/new', {
+            scheduleAt: format(scheduleAt, 'yyyy-MM-dd')
+        })
+        .then(({data})=>{
+            router.push('/schedules-time-options')
+        })
+        .catch(error=>{
+            console.error(error.message)
+        });
+
 
     }, [scheduleAt]);
 
@@ -49,4 +67,4 @@ const SchedulesNew: NextPage = ()=>{
     )
 }
 
-export default SchedulesNew;
+export default ComponentPage;
