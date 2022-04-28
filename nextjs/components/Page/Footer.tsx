@@ -21,12 +21,11 @@ const Footer = ({
         {
             value: "Continuar",
             type: "submit",
-            href: "/schedules-time-options"
         },
         {
             value: "Voltar",
             onClick: toBack,
-            type: "submit"
+            type: "button"
         }
     ],
 }: FooterProps) => {
