@@ -9,10 +9,11 @@ type PageProps = {
     title: string;
     id: string;
     pageColor: PageColor;
+    panel?: ReactNode;
 }
 
 export const Page = (
-    { children, title, id, pageColor }:PageProps
+    { children, title, id, pageColor, panel }:PageProps
     ) => {
   return (
     <section id={id} className={["page", pageColor].join(' ')}>
@@ -23,6 +24,8 @@ export const Page = (
       <main>
           {children}
       </main>
+
+      {panel && panel}
 
     </section>
   )
