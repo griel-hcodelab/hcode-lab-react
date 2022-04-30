@@ -1,3 +1,5 @@
 export type ScheduleSession = {
-    scheduleAt?: string;    
+    scheduleAt?: string; 
+    services?: number[];   
+    timeOptionId?: number
 }

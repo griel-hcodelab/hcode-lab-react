@@ -1,32 +1,30 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { withIronSessionApiRoute } from "iron-session/next";
-import { ScheduleSession } from "../../../types/SchedulesSession";
+import { NextApiRequest, NextApiResponse } from "next";
+import { ScheduleSession } from "../../../types/ScheduleSession";
 import { sessionOptions } from "../../../utils/session";
 
-export default withIronSessionApiRoute(async (req: NextApiRequest, res: NextApiResponse) => {
+export default withIronSessionApiRoute(async function (req: NextApiRequest, res: NextApiResponse) {
 
     try {
+
         const services = req.body.services
-        .map((id: any)=> Number(id))
-        .filter((id: number)=> !isNaN(id))
+            .map((id: any) => Number(id))
+            .filter((id: number) => !isNaN(id));
 
         if (services.length === 0) {
-
             res.status(400).send({
-                message: 'Escolha um serviço'
+                message: "Escolha pelo menos um serviço.",
             });
-
             return;
-
         }
 
         const schedule = {
             ...(req.session.schedule ?? {}),
             services,
-        } as ScheduleSession
+        } as ScheduleSession;
 
-        req.session.schedule = schedule
-
+        req.session.schedule = schedule;
+  
         await req.session.save();
     
         res.status(200).json(req.session.schedule);
@@ -34,9 +32,9 @@ export default withIronSessionApiRoute(async (req: NextApiRequest, res: NextApiR
     } catch (e: any) {
 
         res.status(400).json({
-            message:e.message
+            message: e.message,
         });
-        
+
     }
 
-}, sessionOptions)
+}, sessionOptions);

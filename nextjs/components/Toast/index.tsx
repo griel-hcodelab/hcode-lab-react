@@ -1,36 +1,42 @@
 import { ReactNode, useEffect, useState } from "react";
 
 type ToastProps = {
+    children: ReactNode;
     type?: 'success' | 'danger';
     open?: boolean;
-    children: ReactNode,
     onClose?: Function;
 }
 
-export const Toast: React.FC<ToastProps> = ({
-    type = 'success', open = true, children, onClose
+const Toast: React.FC<ToastProps> = ({
+    children,
+    type = "success",
+    open = true,
+    onClose,
 }) => {
 
-    const [isOpen, setIsOpened] = useState(open);
+    const [opened, setOpened] = useState(open);
 
-    const close = ()=>{
+    const close = () => {
 
         if (typeof onClose === 'function') {
             onClose();
         }
-        setIsOpened(false);
+
+        setOpened(false);
+
     }
 
-    useEffect(()=>setIsOpened(open),[open]);
+    useEffect(() => setOpened(open), [open]);
 
     return (
-        <div className={["toast", type, isOpen ? 'open' : ''].join(' ')}>
-            
+        <div className={["toast", type, opened ? 'open' : ''].join(' ')}>
             {children}
-
-            <button type="button" className="close" onClick={()=>close()}>
+            <button type="button" className="close" onClick={() => close()}>
                 <span>&times;</span>
             </button>
         </div>
     )
+
 }
+
+export default Toast;

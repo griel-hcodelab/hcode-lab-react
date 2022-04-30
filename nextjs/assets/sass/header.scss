@@ -36,6 +36,7 @@
           li {
             &.divider {
               display: flex;
+              padding: 5px 0;
             }
             &.hide-guest {
               display: flex;
@@ -239,15 +240,15 @@
         ul {
           margin-top: 0;
           flex-direction: row;
-          justify-content: flex-start;
+          justify-content: space-evenly;
           align-items: center;
           li {
             &.divider {
               display: none;
             }
             a {
-              font-size: 18px;
-              min-width: 120px;
+              font-size: 14px;
+              min-width: 100px;
               padding: 10px 0;
               text-align: center;
               &:hover {

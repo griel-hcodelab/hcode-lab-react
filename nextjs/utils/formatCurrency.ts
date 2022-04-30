@@ -3,8 +3,10 @@ export function formatCurrency(
     locale: string = 'pt-BR',
     currency: string = 'BRL',
 ) {
+
     return new Intl.NumberFormat(locale, {
         style: 'currency',
-        currency
-    }).format(value)
+        currency,
+    }).format(value);
+
 }

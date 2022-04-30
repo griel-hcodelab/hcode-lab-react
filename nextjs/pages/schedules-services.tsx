@@ -1,20 +1,34 @@
-import { NextPage } from "next"
-import { ChangeEvent } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { Header } from "../components/Header";
-import { Page } from "../components/Page"
+import axios from "axios";
+import { NextPage } from "next";
+import { useEffect } from "react";
+import Header from "../components/Header";
+import Page from "../components/Page";
 import Footer from "../components/Page/Footer";
-import { Panel } from "../components/Schedule/Panel";
-import ScheduleServiceProvider, { useScheduleService } from "../components/Schedule/ScheduleServiceContext";
+import Toast from "../components/Toast";
 import { formatCurrency } from "../utils/formatCurrency";
+import Panel from "../components/Schedule/Panel";
+import ScheduleServiceProvider, { useScheduleService } from "../components/Schedule/ScheduleServiceContext";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { get } from "lodash";
+import { useRouter } from "next/router";
 
 type FormData = {
-    services: number[]
+    services: number[];
+    server?: unknown;
 }
 
-const ScheduleServicesPage = () => {
+const SchedulesServicesPage = () => {
 
-    const { services, addSelectedService, removeSelectedService } = useScheduleService();
+    const { services, selecteds, addSelectedService, removeSelectedService } = useScheduleService();
+
+    const {
+        handleSubmit,
+        setValue,
+        setError,
+        formState: { errors },
+        clearErrors,
+    } = useForm<FormData>();
+    const router = useRouter();
 
     const onChangeService = (checked: boolean, serviceId: number) => {
 
@@ -23,83 +37,103 @@ const ScheduleServicesPage = () => {
         } else {
             removeSelectedService(serviceId);
         }
-    }
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        clearErrors,
-        setError
-    } = useForm<FormData>();
+    }
 
     const save: SubmitHandler<FormData> = ({ services }) => {
 
-        console.log(services);
+        if (services.length === 0) {
+            setError("services", {
+                type: "required",
+                message: "Escolha pelo menos um serviço.",
+            });
+            return false;
+        }
+
+        axios
+            .post("/api/schedules/services", { services, })
+            .then(() => router.push("/schedules-payment"))
+            .catch((error) => {
+                setError("server", {
+                    message: error.response?.data.message ?? error.message,
+                });
+            });
 
     }
 
-    return <Page id="schedules-services" pageColor="blue" title="Escolha os Serviços" panel={<Panel />}>
+    useEffect(() => {
 
-        <header className="page-title">
-            <h2>Escolha os Serviços</h2>
-            <hr />
-        </header>
+        setValue("services", selecteds.map((service) => service.id));
 
-        <form onSubmit={handleSubmit(save)}>
-            <input type="hidden" name="schedule_at" />
-            <input type="hidden" name="option" />
+        if (selecteds.length > 0) {
+            clearErrors();
+        }
 
-            <div className="options">
+    }, [selecteds, setValue, clearErrors]);
 
-                {services.map((service) => (
-                    <label key={String(service.id)}>
-                        <input type="checkbox" name="service" value={service.id} onChange={
-                            (e: ChangeEvent<HTMLInputElement>) => {
-                                onChangeService(e.target.checked, +service.id)
-                            }
-                        } />
-                        <div className="square">
-                            <div></div>
-                        </div>
-                        <div className="content">
-                            <span className="name">{service.name}</span>
-                            <span className="description">{service.description}</span>
-                            <span className="price">{formatCurrency(+service.price)}</span>
-                        </div>
-                    </label>
-                ))}
+    return (
+        <Page
+            pageColor="blue"
+            title="Escolha os Serviços"
+            id="schedules-services"
+            panel={<Panel />}
+        >
+            <form onSubmit={handleSubmit(save)}>
 
-            </div>
+                <input type="hidden" name="schedule_at" />
+                <input type="hidden" name="option" />
 
-            <Footer />
-        </form>
+                <div className="options">
+                    {services.map(({ id, name, description, price }) => (
+                        <label
+                            key={String(id)}
+                        >
+                            <input
+                                type="checkbox"
+                                name="service"
+                                value={id}
+                                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                                    onChangeService(event.target.checked, Number(id));
+                                }}
+                            />
+                            <div className="square">
+                                <div></div>
+                            </div>
+                            <div className="content">
+                                <span className="name">{name}</span>
+                                <span className="description">{description}</span>
+                                <span className="price">{formatCurrency(+price)}</span>
+                            </div>
+                        </label>
+                    ))}
+                </div>
 
+                <Toast
+                    type='danger'
+                    open={Object.keys(errors).length > 0}
+                    onClose={() => clearErrors()}
+                >
+                    {Object.keys(errors).map((err) => (
+                        get(errors, `${err}.message`, 'Verifique os serviços selecionados.')
+                    ))}
+                </Toast>
 
-
-    </Page>
+                <Footer />
+            </form>
+        </Page>
+    )
 
 }
 
-const ScheduleServices: NextPage = () => {
-
-
-
-
+const ComponentPage: NextPage = () => {
 
     return (
         <ScheduleServiceProvider>
-
-
             <Header />
-
-            <ScheduleServicesPage />
-
-
+            <SchedulesServicesPage />
         </ScheduleServiceProvider>
-    )
+    );
+
 }
 
-
-export default ScheduleServices;
-
+export default ComponentPage;

@@ -1,3 +1,3 @@
-export const toBack = ()=>{
-    window.history.back();
-}
+export const toBack = () => {
+  window.history.back();
+};
